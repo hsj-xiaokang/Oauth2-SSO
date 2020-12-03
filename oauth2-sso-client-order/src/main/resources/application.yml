@@ -1,0 +1,26 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /orderSystem   
+    session:
+      cookie:
+        path: /
+        name: ORDERCLIENT
+spring:
+  redis:
+    host: 127.0.0.1
+    password: xfxMaster973339_2018
+    port: 6739  
+            
+security:
+  oauth2:
+    client:
+      client-id: OrderManagement
+      client-secret: order123
+      access-token-uri: http://myauth.com:8080/oauth/token
+      user-authorization-uri: http://myauth.com:8080/oauth/authorize
+    resource:
+      token-info-uri: http://myauth.com:8080/oauth/check_token
+      user-info-uri: http://myauth.com:8080/user
+    authorization:
+      check-token-access: http://myauth.com:8080/oauth/check_token

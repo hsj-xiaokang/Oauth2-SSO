@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会员列表</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<h3>当前登录用户：<span ></span> | <a onclick="logoutMember()">退出</a></h3>
+<h2>这是会员管理列表页面</h2>
+<table class="table">
+    <tr>
+        <th>名称</th>
+        <th>职业</th>
+        <th>简介</th>
+        <th>创建时间</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">蓝忘机</td>
+        <td>驱邪师</td>
+        <td>蓝二公子</td>
+        <td>2019-03-01</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">魏无羡</td>
+        <td>魔道祖师</td>
+        <td>云梦江氏大弟子</td>
+        <td>2019-03-02</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+    <tr>
+        <td style="font-size: 20px;">苏沐橙</td>
+        <td>枪炮师</td>
+        <td>一流女玩家</td>
+        <td>2019-03-03</td>
+        <td><a th:href="@{/member/detail}">详情</a> </td>
+    </tr>
+</table>
+</body>
+
+<script type="text/javascript">
+   function logoutMember(){
+	   //存入userName到Redis，然后ajax返回时候调用系统退出
+	   $.ajax({
+           //请求方式
+           type : "GET",
+           //请求的媒体类型
+           contentType: "application/json;charset=UTF-8",
+           //请求地址
+           url : "http://mymember.com:8099/memberSystem/member/tagLogoutUserName2Redis",
+           //数据，json字符串
+           data : JSON.stringify({}),
+           //请求成功
+           success : function(result) {
+               console.log(result);
+               //调用系统退出
+               window.location.href = "http://mymember.com:8099/memberSystem/logout"
+           },
+           //请求失败，包含具体的错误信息
+           error : function(e){
+               console.log(e.status);
+               console.log(e.responseText);
+           }
+       });	  
+   }
+</script>
+</html>

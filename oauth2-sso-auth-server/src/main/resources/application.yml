@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3307/permission?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: HSJissmart1
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    show-sql: true
+  session:
+    store-type: redis
+  redis:
+    host: 127.0.0.1
+    password: xfxMaster973339_2018
+    port: 6739
+server:
+  port: 8080
+  
+# system:
+# #客户端配置
+  # client:
+    # clients[0]:
+      # clientId: OrderManagement
+      # clientSecret: order123
+    # clients[1]:
+      # clientId: UserManagement
+      # clientSecret: user123
+    # clients[2]:
+      # clientId: codeTest
+      # clientSecret: order123

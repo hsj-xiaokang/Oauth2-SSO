@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<h3><span ></span> | <a onclick="logoutOrder()">退出</a> </h3>
+<h2>这是订单管理列表页面</h2>
+<h2><a href="http://mymember.com:8099/memberSystem/member/list">会员列表页面</a></h2>
+</body>
+
+
+<script type="text/javascript">
+
+   function logoutOrder(){	
+	     //存入userName到Redis，然后ajax返回时候调用系统退出
+		   $.ajax({
+	           //请求方式
+	           type : "GET",
+	           //请求的媒体类型
+	           contentType: "application/json;charset=UTF-8",
+	           //请求地址
+	           url : "http://myorder.com:8090/orderSystem/order/tagLogoutUserName2Redis",
+	           //数据，json字符串
+	           data : JSON.stringify({}),
+	           //请求成功
+	           success : function(result) {
+	               console.log(result);
+	               //调用系统退出
+	               window.location.href = "http://myorder.com:8090/orderSystem/logout"
+	           },
+	           //请求失败，包含具体的错误信息
+	           error : function(e){
+	               console.log(e.status);
+	               console.log(e.responseText);
+	           }
+	       });	  
+   }
+  
+</script>
+</html>
