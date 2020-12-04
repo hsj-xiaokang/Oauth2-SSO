@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cjs.example.anotation.MySsoClientCheck;
+import com.cjs.example.domain.MyUser;
 import com.cjs.example.redis.RedisService;
 import com.cjs.example.util.Constants;
+import com.cjs.example.util.SecurityUtils;
 
 /**
  * @author ChengJianSheng
@@ -74,5 +76,10 @@ public class OrderController {
     public Principal info(Principal principal) {
         return principal;
     }
-
+    @MySsoClientCheck
+    @GetMapping("/myUserInfo")
+    @ResponseBody
+    public MyUser myUserInfo() {
+        return SecurityUtils.getLoginUser();
+    }
 }

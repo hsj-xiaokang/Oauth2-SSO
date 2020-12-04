@@ -14,7 +14,13 @@ spring:
     port: 6739
 server:
   port: 8080
-  
+  servlet:
+    session:
+      # session过期时间秒
+      timeout: 604800s
+      cookie:
+        # cookie max-age 过期时间秒(session id 存于cookie中)
+        max-age: 604800s
 # system:
 # #客户端配置
   # client:

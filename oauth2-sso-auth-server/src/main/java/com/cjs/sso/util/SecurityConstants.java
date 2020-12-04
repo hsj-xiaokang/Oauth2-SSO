@@ -22,15 +22,6 @@ public class SecurityConstants
      */
     public static final String TOKEN_LOGOUT = "/token/logout";
 
-    /**
-     * 用户ID字段
-     */
-    public static final String DETAILS_USER_ID = "user_id";
-
-    /**
-     * 用户名字段
-     */
-    public static final String DETAILS_USERNAME = "username";
 
     /**
      * sys_oauth_client_details 表的字段，不包括client_id、client_secret

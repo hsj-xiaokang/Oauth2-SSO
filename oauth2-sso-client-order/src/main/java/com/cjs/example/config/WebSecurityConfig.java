@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
+import org.springframework.security.oauth2.provider.token.UserAuthenticationConverter;
 
 /**
  * @author ChengJianSheng
@@ -14,7 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableOAuth2Sso
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
+	@Autowired
+	private RemoteTokenServices remoteTokenServices;
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/bootstrap/**");
@@ -37,4 +41,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    http.cors();
         http.headers().frameOptions().disable();
     }
+    
+    /**
+     * 
+     *  说明：增强解析token更多信息
+     *  @author:heshengjin qq:2356899074
+     *  @date 2020年12月4日 下午2:08:55
+     */
+	@Override
+	public void init(WebSecurity web) throws Exception {
+		  super.init(web);
+	      DefaultAccessTokenConverter accessTokenConverter = new DefaultAccessTokenConverter();
+	      UserAuthenticationConverter userTokenConverter = new CommonUserConverter();
+	      accessTokenConverter.setUserTokenConverter(userTokenConverter);
+	      remoteTokenServices.setAccessTokenConverter(accessTokenConverter);
+	}
 }

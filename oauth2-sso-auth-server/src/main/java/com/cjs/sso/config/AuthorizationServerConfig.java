@@ -1,13 +1,14 @@
 package com.cjs.sso.config;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -19,14 +20,20 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+import com.alibaba.fastjson.JSON;
 import com.cjs.sso.domain.MyUser;
+import com.cjs.sso.service.MyUserDetailsService;
 import com.cjs.sso.util.CacheConstants;
+import com.cjs.sso.util.Constants;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * OAuth2 认证服务配置
  * 
  * @author ruoyi
  */
+@Slf4j
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter
@@ -70,6 +77,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer oauthServer)
     {
         oauthServer.allowFormAuthenticationForClients().checkTokenAccess("permitAll()");
+        //解决Encoded password does not look like BCrypt报错
+        //因为springsecurity在最新版本升级后,默认把之前的明文密码方式给去掉了
+        //https://spring.io/blog/2017/11/01/spring-security-5-0-0-rc1-released#password-storage-updated
+//        oauthServer.passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
     /**
@@ -111,75 +122,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             if (authentication.getUserAuthentication() != null)
             {
                 Map<String, Object> additionalInformation = new LinkedHashMap<String, Object>();
-//                MyUser user = (MyUser) authentication.getUserAuthentication().getPrincipal();
+                MyUser user = (MyUser) authentication.getUserAuthentication().getPrincipal();
+                //举个例子，假设我们想增加一个字段，这里我们增加一个mobile表示手机号
+                //附加的mobile参数
+                additionalInformation.put(Constants.MOBILE_ADDITION_NAME, user.getMobile());
+                additionalInformation.put(Constants.DETAILS_USER_ID, user.getUserId());
+                additionalInformation.put(Constants.DETAILS_USERNAME, user.getUsername());
+                log.info("登录成功！tokenEnhancer: {}", JSON.toJSONString(accessToken));
                 ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);
             }
             return accessToken;
         };
     }
 }
-/*import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-
-*//**
- * @author ChengJianSheng
- * @date 2019-02-11
- *//*
-@Configuration
-@EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-
-    @Autowired
-    private DataSource dataSource;
-
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.allowFormAuthenticationForClients();
-        security.tokenKeyAccess("isAuthenticated()");
-    }
-
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.jdbc(dataSource);
-    }
-
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.accessTokenConverter(jwtAccessTokenConverter());
-        endpoints.tokenStore(jwtTokenStore());
-//        endpoints.tokenServices(defaultTokenServices());
-    }
-
-    @Primary
-    @Bean
-    public DefaultTokenServices defaultTokenServices() {
-        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(jwtTokenStore());
-        defaultTokenServices.setSupportRefreshToken(true);
-        return defaultTokenServices;
-    }
-
-    @Bean
-    public JwtTokenStore jwtTokenStore() {
-        return new JwtTokenStore(jwtAccessTokenConverter());
-    }
-
-    @Bean
-    public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("cjs");   //  Sets the JWT signing key
-        return jwtAccessTokenConverter;
-    }
-
-}
-*/

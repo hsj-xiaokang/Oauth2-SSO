@@ -3,7 +3,11 @@ server:
   servlet:
     context-path: /orderSystem   
     session:
+      # session过期时间秒
+      timeout: 604800s
       cookie:
+        # cookie max-age 过期时间秒(session id 存于cookie中)
+        max-age: 604800s
         path: /
         name: ORDERCLIENT
 spring:

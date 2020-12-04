@@ -53,3 +53,10 @@ demo使用同时需要自己的Redis，自行修改自己的Redis地址
    
 # 关于自动授权
   oauth_client_details.autoapprove == true(默认Null)
+  
+# 账号、密码
+admin  admin123
+
+zhangsan admin123
+
+# 新增用户时候，密码使用SecurityUtils.encryptPassword加密

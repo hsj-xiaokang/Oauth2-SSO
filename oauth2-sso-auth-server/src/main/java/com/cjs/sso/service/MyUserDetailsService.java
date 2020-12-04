@@ -52,8 +52,9 @@ public class MyUserDetailsService implements UserDetailsService {
                 authorityList.add(new SimpleGrantedAuthority(sysPermission.getCode()));
             }
         }
-
-        MyUser myUser = new MyUser(sysUser.getUsername(), passwordEncoder.encode(sysUser.getPassword()), authorityList);
+        //举个例子，假设我们想增加一个字段，这里我们增加一个mobile表示手机号
+        //附加的mobile参数
+        MyUser myUser = new MyUser(sysUser.getUsername(), sysUser.getPassword(),Constants.MOBILE,sysUser.getId(), true, true, true, true, authorityList);
 
         log.info("登录成功！用户: {}", JSON.toJSONString(myUser));
         //登录就删除Redis的sso退出标识
