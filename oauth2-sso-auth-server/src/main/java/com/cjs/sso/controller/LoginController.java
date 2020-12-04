@@ -23,6 +23,7 @@ import com.cjs.sso.domain.SecurityProperties;
 /**
  * 自定义登录页面login
  * @author ChengJianSheng
+ * @author:heshengjin qq:2356899074
  * @date 2019-02-12
  */
 @Controller

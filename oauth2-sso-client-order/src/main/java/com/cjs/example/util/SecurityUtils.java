@@ -13,6 +13,7 @@ import com.cjs.example.domain.MyUser;
  * 权限获取工具类
  * 
  * @author ruoyi
+ * @author:heshengjin qq:2356899074
  */
 public class SecurityUtils
 {

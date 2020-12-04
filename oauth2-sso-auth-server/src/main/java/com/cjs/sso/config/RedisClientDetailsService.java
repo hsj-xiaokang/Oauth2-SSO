@@ -13,6 +13,7 @@ import com.cjs.sso.util.SecurityConstants;
  * 重写原生方法支持redis缓存
  *
  * @author ruoyi
+ * @author:heshengjin qq:2356899074
  */
 public class RedisClientDetailsService extends JdbcClientDetailsService
 {

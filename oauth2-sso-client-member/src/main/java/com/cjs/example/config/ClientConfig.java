@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
-
+/**
+ * 
+ *  说明：配置restemplate
+ *  @author:heshengjin qq:2356899074
+ *  @date 2020年12月4日 下午2:48:52
+ */
 @Configuration
 public class ClientConfig {
  

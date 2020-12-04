@@ -19,6 +19,7 @@ import com.cjs.example.util.Constants;
 /**
  * https://my.oschina.net/giegie/blog/3023768 根据checktoken 的结果转化用户信息
  * @author lengleng
+ * @author:heshengjin qq:2356899074
  */
 public class CommonUserConverter implements UserAuthenticationConverter {
     private static final String N_A = "N/A";

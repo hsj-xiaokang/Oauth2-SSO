@@ -4,6 +4,7 @@ package com.cjs.sso.util;
  * 缓存的key 常量
  * 
  * @author ruoyi
+ * @author:heshengjin qq:2356899074
  */
 public class CacheConstants
 {

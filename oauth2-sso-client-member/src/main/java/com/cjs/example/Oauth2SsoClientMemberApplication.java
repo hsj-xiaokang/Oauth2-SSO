@@ -7,7 +7,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
-
+/**
+ * 
+ *  说明：main
+ *  @author:heshengjin qq:2356899074
+ *  @date 2020年12月4日 下午2:50:21
+ */
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
 public class Oauth2SsoClientMemberApplication {

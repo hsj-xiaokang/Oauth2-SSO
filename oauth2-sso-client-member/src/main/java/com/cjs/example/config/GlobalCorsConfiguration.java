@@ -10,7 +10,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+/**
+ * 
+ *  说明：跨域
+ *  @author:heshengjin qq:2356899074
+ *  @date 2020年12月4日 下午2:49:18
+ */
 @Configuration
 public class GlobalCorsConfiguration  implements WebMvcConfigurer {
     //添加到容器中管理

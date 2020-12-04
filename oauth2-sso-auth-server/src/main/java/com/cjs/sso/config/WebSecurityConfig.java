@@ -17,6 +17,7 @@ import com.cjs.sso.service.MyUserDetailsService;
 
 /**
  * @author ChengJianSheng
+ * @author:heshengjin qq:2356899074
  * @date 2019-02-11
  */
 @Configuration

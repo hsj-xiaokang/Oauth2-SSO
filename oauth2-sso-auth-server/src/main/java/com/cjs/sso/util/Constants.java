@@ -4,6 +4,7 @@ package com.cjs.sso.util;
  * 通用常量信息
  * 
  * @author ruoyi
+ * @author:heshengjin qq:2356899074
  */
 public class Constants
 {

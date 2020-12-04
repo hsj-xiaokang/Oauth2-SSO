@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.provider.token.UserAuthenticationConv
 
 /**
  * @author ChengJianSheng
+ * @author:heshengjin qq:2356899074
  * @date 2019-03-03
  */
 @EnableOAuth2Sso

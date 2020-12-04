@@ -32,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * OAuth2 认证服务配置
  * 
  * @author ruoyi
+ * @author:heshengjin qq:2356899074
  */
 @Slf4j
 @Configuration

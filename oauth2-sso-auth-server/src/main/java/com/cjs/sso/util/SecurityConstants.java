@@ -4,6 +4,7 @@ package com.cjs.sso.util;
  * 权限相关通用常量
  * 
  * @author ruoyi
+ * @author:heshengjin qq:2356899074
  */
 public class SecurityConstants
 {

@@ -30,7 +30,7 @@ import com.cjs.example.util.SecurityUtils;
 /**
  * 数据过滤处理
  * 
- * @author hsj
+ * @author:heshengjin qq:2356899074
  */
 @Aspect
 @Component

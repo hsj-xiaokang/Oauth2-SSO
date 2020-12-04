@@ -10,6 +10,7 @@ import java.util.Collection;
  * 大部分时候直接用User即可不必扩展
  * @author ChengJianSheng
  * @date 2019-02-11
+ * @author:heshengjin qq:2356899074
  */
 @Data
 public class MyUser extends User {

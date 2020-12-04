@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * @author ChengJianSheng
  * @date 2019-02-12
+ * @author:heshengjin qq:2356899074
  */
 public interface SysPermissionRepository extends JpaSpecificationExecutor<SysPermission>, JpaRepository<SysPermission, Integer> {
 

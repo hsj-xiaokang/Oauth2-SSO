@@ -13,7 +13,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Component;
 
-//不是必要的
+/**
+ * 
+ *  说明：拦截restemplate
+ *  @author:heshengjin qq:2356899074
+ *  @date 2020年12月4日 下午2:48:29
+ */
 @Component
 public class ActionTrackInterceptor implements ClientHttpRequestInterceptor {
 
